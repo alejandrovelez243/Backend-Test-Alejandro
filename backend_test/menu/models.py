@@ -3,7 +3,7 @@ from django.db import models
 
 
 class Menu(models.Model):
-    date = models.DateField()
+    date = models.DateField(unique=True)
     show_text = models.TextField()
 
 class Product(models.Model):

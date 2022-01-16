@@ -41,7 +41,8 @@ NO_DJANGO_APPS = [
     "backend_test.utils",
     'backend_test.menu',
     'backend_test.staff',
-    'django_slack'
+    "rest_framework",
+    'rest_framework.authtoken'
 ]
 
 INSTALLED_APPS = [
@@ -51,7 +52,6 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "rest_framework",
     "django_extensions",
 ] + NO_DJANGO_APPS
 
@@ -80,8 +80,7 @@ TEMPLATES = [
                 "django.template.context_processors.debug",
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
-                "django.contrib.messages.context_processors.messages",
-                "django.template.loaders.app_directories.Loader",
+                "django.contrib.messages.context_processors.messages"
             ],
         },
     },
@@ -158,10 +157,11 @@ REST_FRAMEWORK = {
     "DEFAULT_RENDERER_CLASSES": ["rest_framework.renderers.JSONRenderer"],
     "DEFAULT_AUTHENTICATION_CLASSES": [
         "rest_framework.authentication.SessionAuthentication",
+        "rest_framework.authentication.TokenAuthentication",
     ],
 }
 
-if getenv("BROWSABLE_API_RENDERER", default=False, coalesce=bool):
+if getenv("BROWSABLE_API_RENDERER", default=True, coalesce=bool):
     REST_FRAMEWORK["DEFAULT_RENDERER_CLASSES"] = REST_FRAMEWORK[
         "DEFAULT_RENDERER_CLASSES"
     ] + ["rest_framework.renderers.BrowsableAPIRenderer"]

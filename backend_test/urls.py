@@ -16,8 +16,10 @@ Including another URLconf
 from django.urls import path, include
 from django.contrib import admin
 from .utils.healthz import healthz
+from rest_framework.authtoken import views
 
 urlpatterns = [
+    path('api-token-auth/', views.obtain_auth_token),
     path("healthz", healthz, name="healthz"),
     path('admin/', admin.site.urls),
     path('menu/', include('backend_test.menu.urls')),

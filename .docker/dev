@@ -70,7 +70,4 @@ sqlmig|sqlmigrate|sqlmigration)
 *)
   _usage
 ;;
-superuser)
-  python manage.py createsuperuser "$@"
-;;
 esac

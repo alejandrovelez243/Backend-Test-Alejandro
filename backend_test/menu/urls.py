@@ -1,6 +1,6 @@
 from backend_test.menu import views
-from django.urls import path
+from django.urls import path, include
 
 urlpatterns = [
-    path('', views.test_slack_message)
+    path('', views.MenuViewMixin.as_view()),
 ]

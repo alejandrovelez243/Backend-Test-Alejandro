@@ -1,12 +1,24 @@
+# Django
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
-import slack
-import slack.chat
 from django.conf import settings
 
-def test_slack_message(request, *args, **kwargs):
-    slack.api_token = settings.SLACK_TOKEN
-    slack.chat.post_message('@alejandro-243', 'Hello slackers!', username='mybot')
+# Rest framework
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication
+from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework import mixins, viewsets
+from rest_framework.views import APIView
+from rest_framework import generics
 
-    return JsonResponse({
-        "hola": "as"
-    })
+# Models
+from .models import Menu, Product
+# Serializers
+from . import serializers
+
+
+class MenuViewMixin(generics.ListCreateAPIView):
+	"""
+	Definición de api de creación de tiquetes por medio de web propia
+	"""
+	queryset = Menu.objects.all()
+	serializer_class = serializers.MenuSerializer
+	permission_classes = (IsAuthenticated, )
