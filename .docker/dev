@@ -35,6 +35,10 @@ up|run|server|runserver)
 celery)
   celery -A $APP worker -Q $QUEUES
 ;;
+
+beat)
+  celery -A $APP beat -l INFO --scheduler django_celery_beat.schedulers:DatabaseScheduler
+;;
 test)
   pytest "$@" --flake8 --isort --black --junitxml=/dev/shm/test-results/pytest.xml
 ;;

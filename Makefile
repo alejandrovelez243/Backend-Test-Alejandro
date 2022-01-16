@@ -8,6 +8,14 @@ help:
 up: ## run the project
 	@docker-compose run --service-ports --rm backend || true
 
+.PHONY: celery
+celery: ## run the project
+	@docker-compose run --service-ports --rm celery-worker || true
+
+.PHONY: beat
+beat: ## run the project
+	@docker-compose run --service-ports --rm celery-beat || true
+
 .PHONY: stop
 stop: ## stop Docker containers without removing them
 	@docker-compose stop

@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 import os
 
 from .envtools import getenv
+from celery.schedules import crontab
 
 # import sentry_sdk
 # from sentry_sdk.integrations.django import DjangoIntegration
@@ -42,7 +43,8 @@ NO_DJANGO_APPS = [
     'backend_test.menu',
     'backend_test.staff',
     "rest_framework",
-    'rest_framework.authtoken'
+    'rest_framework.authtoken',
+    'django_celery_beat',
 ]
 
 INSTALLED_APPS = [
@@ -171,12 +173,20 @@ if getenv("BROWSABLE_API_RENDERER", default=True, coalesce=bool):
 AUTH_USER_MODEL = 'staff.User'
 
 # Slack integration
-SLACK_TOKEN = "xoxb-2953382902662-2960092645971-gJW3OalHSUSB5y0h4gBDSBn7"
+SLACK_TOKEN = "xoxb-2953382902662-2960092645971-4NNMRvafvgwcT1ftg9EEcwmk"
 
 # APP SPECIFIC SETTINGS
 
 # if getenv("SENTRY_DSN", default=None):
 #    sentry_sdk.init(dsn=getenv("SENTRY_DSN"), integrations=[DjangoIntegration()])
+
+
+CELERY_BEAT_SCHEDULE = {
+    "sample_task": {
+        "task": "backend_test.menu.tasks.send_slack_message",
+        "schedule": crontab(minute="*/1"),
+    },
+}
 
 LOGGING = {
     "version": 1,

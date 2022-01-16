@@ -14,7 +14,6 @@ class StaffSerializer(serializers.ModelSerializer):
 class OrderSerializer(serializers.ModelSerializer):
 	staff = serializers.SlugRelatedField(
 		slug_field='full_name',
-		queryset=Staff.objects.all(),
 		read_only=True
 	)
 

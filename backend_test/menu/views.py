@@ -15,7 +15,7 @@ from .models import Menu, Product
 from . import serializers
 
 
-class MenuViewMixin(generics.ListCreateAPIView):
+class MenuViewAPI(generics.ListCreateAPIView):
 	"""
 	Definición de api de creación de tiquetes por medio de web propia
 	"""
