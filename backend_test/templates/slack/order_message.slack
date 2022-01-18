@@ -1,0 +1,7 @@
+{% block text %}
+{{ order.menu.show_text }}
+{% for product in order.menu.product_set.all %}
+    - {{product}}
+{% endfor %}
+Click en el siguiente link para seleccionar tu almuerzo http://localhost:8000{% url 'staff:order' order.uuid %}
+{% endblock %}

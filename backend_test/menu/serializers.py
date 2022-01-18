@@ -30,5 +30,5 @@ class MenuSerializer(serializers.ModelSerializer):
 		staffs = Staff.objects.all().distinct('email')
 		for staff in staffs:
 			order = Order.objects.create(staff=staff, menu=menu)
-			send_slack_message.delay(order=order.id)
+			print(send_slack_message.delay(order=order.id))
 		return menu

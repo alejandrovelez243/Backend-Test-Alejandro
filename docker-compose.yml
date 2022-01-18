@@ -24,8 +24,6 @@ services:
       - jupyterlab
       - postgres
       - redis
-      - celery-worker
-      - celery-beat
   jupyterlab:
     build:
       context: .
@@ -63,14 +61,12 @@ services:
       - 5433:5432
   redis:
     image: redis:6-alpine
-    volumes:
-      - redis-data:/data
 
   celery-worker:
     build:
       context: .
       dockerfile: .docker/Dockerfile_base
-    command: celery worker --app=backend_test --pool=gevent --concurrency=20 --loglevel=INFO
+    command: celery
     depends_on:
       - redis
     restart: 'no'
@@ -81,13 +77,12 @@ services:
     build:
       context: .
       dockerfile: .docker/Dockerfile_base
-    command: celery beat --app=backend_test --loglevel=INFO
+    command: beat
     depends_on:
-    - redis
+      - redis
     restart: 'no'
     volumes:
       - .:/opt/cornershop/backend-test
 
 volumes:
   postgres123-data: {}
-  redis-data: {}

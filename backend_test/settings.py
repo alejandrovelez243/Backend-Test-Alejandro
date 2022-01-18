@@ -39,12 +39,12 @@ APPEND_SLASH = False
 # Application definition
 
 NO_DJANGO_APPS = [
+    'django_celery_beat',
     "backend_test.utils",
     'backend_test.menu',
     'backend_test.staff',
     "rest_framework",
     'rest_framework.authtoken',
-    'django_celery_beat',
 ]
 
 INSTALLED_APPS = [
@@ -173,20 +173,30 @@ if getenv("BROWSABLE_API_RENDERER", default=True, coalesce=bool):
 AUTH_USER_MODEL = 'staff.User'
 
 # Slack integration
-SLACK_TOKEN = "xoxb-2953382902662-2960092645971-4NNMRvafvgwcT1ftg9EEcwmk"
+SLACK_TOKEN = ""
 
 # APP SPECIFIC SETTINGS
 
 # if getenv("SENTRY_DSN", default=None):
 #    sentry_sdk.init(dsn=getenv("SENTRY_DSN"), integrations=[DjangoIntegration()])
 
+CELERY_BROKER_URL = "redis://redis:6379"
+CELERY_RESULT_BACKEND = "redis://redis:6379"
+CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
 
-CELERY_BEAT_SCHEDULE = {
-    "sample_task": {
-        "task": "backend_test.menu.tasks.send_slack_message",
-        "schedule": crontab(minute="*/1"),
-    },
-}
+# CELERY_BEAT_SCHEDULE = {
+#     "sample_task": {
+#         "task": "backend_test.menu.tasks.send_slack_message",
+#         "schedule": crontab(hour='8,9,10,11'),
+#     },
+# }
+
+# CELERY_BEAT_SCHEDULE = {
+#     "sample_task": {
+#         "task": "backend_test.menu.tasks.send_slack_message",
+#         "schedule": crontab(minute="*/1"),
+#     },
+# }
 
 LOGGING = {
     "version": 1,
