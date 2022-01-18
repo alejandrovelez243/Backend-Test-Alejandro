@@ -4,7 +4,6 @@ from rest_framework import serializers
 # ------ models
 from .models import Menu, Product
 from backend_test.staff.models import Order, Staff
-from .tasks import send_slack_message
 
 class ProductSerializer(serializers.ModelSerializer):
 	class Meta:
@@ -30,5 +29,4 @@ class MenuSerializer(serializers.ModelSerializer):
 		staffs = Staff.objects.all().distinct('email')
 		for staff in staffs:
 			order = Order.objects.create(staff=staff, menu=menu)
-			print(send_slack_message.delay(order=order.id))
 		return menu

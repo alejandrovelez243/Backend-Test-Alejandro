@@ -43,3 +43,9 @@ class OrderSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Order
 		fields = ('staff', 'menu', 'product', 'customizations',)
+
+
+	def create(self, validated_data):
+		super().create(validated_data)
+		print(self.instance)
+		

@@ -24,7 +24,7 @@ class StaffViewAPI(generics.ListCreateAPIView):
 	permission_classes = (IsAuthenticated, )
 
 
-class OrderViewAPI(generics.RetrieveUpdateAPIView):
+class OrderRetrieveViewAPI(generics.RetrieveUpdateAPIView):
 	"""
 	Definición de api de creación de tiquetes por medio de web propia
 	"""
@@ -32,3 +32,11 @@ class OrderViewAPI(generics.RetrieveUpdateAPIView):
 	queryset = Order.objects.all()
 	serializer_class = serializers.OrderSerializer
 	permission_classes = ()
+
+class OrderListViewAPI(generics.ListAPIView):
+	"""
+	Definición de api de creación de tiquetes por medio de web propia
+	"""
+	queryset = Order.objects.all()
+	serializer_class = serializers.OrderSerializer
+	permission_classes = (IsAuthenticated, )
