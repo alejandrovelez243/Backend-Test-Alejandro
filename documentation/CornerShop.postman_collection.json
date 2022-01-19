@@ -1,0 +1,482 @@
+{
+	"info": {
+		"_postman_id": "24d7f419-8dad-424d-9653-10feef70d90f",
+		"name": "CornerShop",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Menu",
+			"item": [
+				{
+					"name": "List menu",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}menu/",
+							"host": [
+								"{{url}}menu"
+							],
+							"path": [
+								""
+							]
+						},
+						"description": "## Description\nThis api is to list the menu.\n\n|Value   |Description   |\n|---|---|\n|date   |This is menu date   |\n|show_text   |Message that is going to send with the slack message   |"
+					},
+					"response": []
+				},
+				{
+					"name": "Create menu",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"date\": \"2022-01-19\",\r\n    \"show_text\": \"Estos son los platos para el dia 19 de enero\",\r\n    \"products\": [\r\n        {\r\n            \"description\": \"Pescado con arroz\"\r\n        },\r\n        {\r\n            \"description\": \"Arroz con papitas\"\r\n        },\r\n        {\r\n            \"description\": \"Lentejas\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}menu/",
+							"host": [
+								"{{url}}menu"
+							],
+							"path": [
+								""
+							]
+						},
+						"description": "## Description\nThis api is to create the menu that is going to be send to all the staff.\n\n|Value   |Description   |\n|---|---|\n|date   |This is menu date   |\n|show_text   |Message that is going to send with the slack message   |\n|products   |Products that are available that day   |"
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve menu",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}menu/1",
+							"host": [
+								"{{url}}menu"
+							],
+							"path": [
+								"1"
+							]
+						},
+						"description": "## Description\nwith this api you can retrieve a menu by the pk\n\n|Value   |Description   |\n|---|---|\n|date   |This is menu date   |\n|show_text   |Message that is going to send with the slack message   |"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Menu",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"date\": \"2022-01-18\",\r\n    \"show_text\": \"Estos son los platos disponibles para el dia de hoy 18 de enero\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}menu/1",
+							"host": [
+								"{{url}}menu"
+							],
+							"path": [
+								"1"
+							]
+						},
+						"description": "## Description\nwith this api you can update a menu by the pk\n\n|Value   |Description   |\n|---|---|\n|date   |This is menu date   |\n|show_text   |Message that is going to send with the slack message   |"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "List products",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}menu/products",
+							"host": [
+								"{{url}}menu"
+							],
+							"path": [
+								"products"
+							]
+						},
+						"description": "## Description\nThis api list all the products that have created\n\n|Value   |Description   |\n|---|---|\n|date   |This is menu date   |\n|description |The product description   |\n|menu |show_text of the menu   |"
+					},
+					"response": []
+				},
+				{
+					"name": "Update product",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}menu/products/1",
+							"host": [
+								"{{url}}menu"
+							],
+							"path": [
+								"products",
+								"1"
+							]
+						},
+						"description": "## Description\nThis api is to update the description of a product\n\n|Value   |Description   |\n|---|---|\n|description |The product description   |"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Order",
+			"item": [
+				{
+					"name": "List orders",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}staff/order/",
+							"host": [
+								"{{url}}staff"
+							],
+							"path": [
+								"order",
+								""
+							]
+						},
+						"description": "## Description\nYou can find here all the orders that are create.\n\n### Response\n|Value   |Description   |\n|---|---|\n|staff|Full name of the staff user   |\n|menu|show_text of the menu generated   |\n|product   | Product that the staff select|\n|customizations| Changes that the staff make|"
+					},
+					"response": []
+				},
+				{
+					"name": "Get staff order",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}staff/order/a1a62de1-da00-4322-8aed-25295afa8f0b",
+							"host": [
+								"{{url}}staff"
+							],
+							"path": [
+								"order",
+								"a1a62de1-da00-4322-8aed-25295afa8f0b"
+							]
+						},
+						"description": "## Description\nThis endpoint is for get the order information with the uuid as a parameter in the url.\n\n### Response\n|Value   |Description   |\n|---|---|\n|staff|Full name of the staff user   |\n|menu|show_text of the menu generated   |\n|product   | Product that the staff select|\n|customizations| Changes that the staff make|"
+					},
+					"response": []
+				},
+				{
+					"name": "Update staff order",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"product\": \"id\",\r\n    \"customizations\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}staff/order/a1a62de1-da00-4322-8aed-25295afa8f0b",
+							"host": [
+								"{{url}}staff"
+							],
+							"path": [
+								"order",
+								"a1a62de1-da00-4322-8aed-25295afa8f0b"
+							]
+						},
+						"description": "## Description\nThis apis is for updating the order, this is use to the staff user can choose the meal that they want and also make some changes to the order"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Staff",
+			"item": [
+				{
+					"name": "List staff",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"full_name\": \"Alejandro Velez Patiño\",\r\n    \"email\": \"alejandro-243@hotmail.com\",\r\n    \"slack_user\": \"@alejandro-243\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}staff/",
+							"host": [
+								"{{url}}staff"
+							],
+							"path": [
+								""
+							]
+						},
+						"description": "## Description\nThis api is to get the staff that is going to get the slack notification.\n\n### Response\n|Value   |Description   |\n|---|---|\n|full_name|Full name of the staff user   |\n|email|email of the user   |\n|slack_user| slack user where the notification is going to be send|"
+					},
+					"response": []
+				},
+				{
+					"name": "Create staff",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"full_name\": \"Alejandro Velez Patiño\",\r\n    \"email\": \"alejandro-243@hotmail.com\",\r\n    \"slack_user\": \"@alejandro-243\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}staff/",
+							"host": [
+								"{{url}}staff"
+							],
+							"path": [
+								""
+							]
+						},
+						"description": "## Description\nThis api is to create the staff that is going to get the slack notification."
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve staff",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}staff/1",
+							"host": [
+								"{{url}}staff"
+							],
+							"path": [
+								"1"
+							]
+						},
+						"description": "## Description\nThis api is to retrieve the staff."
+					},
+					"response": []
+				},
+				{
+					"name": "Update staff",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"full_name\": \"Alejandro Velez Patiño\",\r\n    \"email\": \"alejandro-243@hotmail.com\",\r\n    \"slack_user\": \"@alejandro-243\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}staff/1",
+							"host": [
+								"{{url}}staff"
+							],
+							"path": [
+								"1"
+							]
+						},
+						"description": "## Description\nThis api is to update the staff."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Get Token",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"console.log(jsonData)\r",
+							"pm.environment.set(\"token\", jsonData.token);\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"abc1234*\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}api-token-auth/",
+					"host": [
+						"{{url}}api-token-auth"
+					],
+					"path": [
+						""
+					]
+				},
+				"description": "## Description\nWith this api you can generate a token, that is going to use on the future api call.\n\nYou need to send the username and password\n\n## Response\n```\n{\n    \"token\": \"{token}\"\n}\n```"
+			},
+			"response": []
+		}
+	]
+}

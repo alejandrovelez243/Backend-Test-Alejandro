@@ -173,7 +173,7 @@ if getenv("BROWSABLE_API_RENDERER", default=True, coalesce=bool):
 AUTH_USER_MODEL = "staff.User"
 
 # Slack integration
-SLACK_TOKEN = "Change"
+SLACK_TOKEN = ""
 
 # APP SPECIFIC SETTINGS
 

@@ -17,6 +17,23 @@
 
 * Local: http://127.0.0.1:8000
 
+### About testing your application
+
+For the testing and coverage of the app I used the test suit that django give to us.
+
+```
+dev test
+dev unit-test
+dev coverage
+```
+
+### Slack integration
+For the slack integration you need a token here is the documentation URL https://api.slack.com/authentication/token-types#bot
+and override the settings.SLACK_TOKEN
+
+### Postman documentation
+To read the documentation you should download the documentation/* and import into postman.
+
 
 ### About building local environment with Linux systems
 
@@ -61,13 +78,4 @@ Edit `.docker/Dockerfile_base` and replace 1337 by your user id.
 ```
 make rebuild
 make up
-```
-
-### About testing your application
-
-For the testing and coverage of the app I used the test suit that django give to us.
-
-```
-dev test
-dev coverage
 ```

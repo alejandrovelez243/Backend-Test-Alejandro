@@ -46,6 +46,9 @@ beat)
 test)
   pytest "$@" --flake8 --isort --black --junitxml=/dev/shm/test-results/pytest.xml
 ;;
+unit-test)
+  python manage.py test
+;;
 cov)
   pytest "$@" --flake8 --isort --black --cov=backend_test --junitxml=/dev/shm/test-results/pytest.xml
 ;;
