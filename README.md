@@ -34,6 +34,10 @@ and override the settings.SLACK_TOKEN
 ### Postman documentation
 To read the documentation you should download the documentation/* and import into postman.
 
+### Celery
+
+Create a celery beat periodic task with crontab minutes=*/x and hours=8-11 to run it every X time, you decide it, and between 8 and 10 of the morning
+
 
 ### About building local environment with Linux systems
 

@@ -180,25 +180,6 @@ SLACK_TOKEN = ""
 # if getenv("SENTRY_DSN", default=None):
 #    sentry_sdk.init(dsn=getenv("SENTRY_DSN"), integrations=[DjangoIntegration()])
 
-CELERY_BROKER_URL = "redis://redis:6379"
-CELERY_RESULT_BACKEND = "redis://redis:6379"
-CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
-CELERY_TIMEZONE = "America/Bogota"
-
-# CELERY_BEAT_SCHEDULE = {
-#     "sample_task": {
-#         "task": "backend_test.menu.tasks.send_slack_message",
-#         "schedule": crontab(hour='8,9,10,11'),
-#     },
-# }
-
-# CELERY_BEAT_SCHEDULE = {
-#     "sample_task": {
-#         "task": "backend_test.menu.tasks.send_slack_message",
-#         "schedule": crontab(minute="*/1"),
-#     },
-# }
-
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": True,
