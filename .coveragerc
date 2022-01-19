@@ -7,3 +7,8 @@ omit =
     backend_test/settings.py
     backend_test/wsgi.py
     backend_test/logging_formatter.py
+    */conftest.py
+    backend_test/utils/healthz.py
+    gunicorn_config.py
+    backend_test/menu/apps.py
+    backend_test/staff/apps.py

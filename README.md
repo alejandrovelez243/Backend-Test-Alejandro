@@ -62,3 +62,11 @@ Edit `.docker/Dockerfile_base` and replace 1337 by your user id.
 make rebuild
 make up
 ```
+
+### About testing your application
+
+Just run the next commands
+```
+dev test
+dev coverage
+```

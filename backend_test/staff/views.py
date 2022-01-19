@@ -1,42 +1,50 @@
-# Django
-from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.conf import settings
-
-# Rest framework
-from rest_framework.authentication import SessionAuthentication, BasicAuthentication
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
+from rest_framework import generics, mixins, viewsets
+from rest_framework.authentication import BasicAuthentication, SessionAuthentication
 from rest_framework.permissions import AllowAny, IsAuthenticated
-from rest_framework import mixins, viewsets
 from rest_framework.views import APIView
-from rest_framework import generics
 
-# Models
-from .models import Staff, Order
-# Serializers
 from . import serializers
+from .models import Order, Staff
 
 
 class StaffViewAPI(generics.ListCreateAPIView):
-	"""
-	Definición de api de creación de tiquetes por medio de web propia
-	"""
-	queryset = Staff.objects.all()
-	serializer_class = serializers.StaffSerializer
-	permission_classes = (IsAuthenticated, )
+    """
+    Definition of the API for creating and list a Staff object
+    """
+
+    queryset = Staff.objects.all()
+    serializer_class = serializers.StaffSerializer
+    permission_classes = (IsAuthenticated,)
+
+
+class StaffViewRetrieveAPI(generics.RetrieveUpdateAPIView):
+    """
+    Definition of the API for retrieve and update a staff object
+    """
+
+    queryset = Staff.objects.all()
+    serializer_class = serializers.StaffSerializer
+    permission_classes = (IsAuthenticated,)
 
 
 class OrderRetrieveViewAPI(generics.RetrieveUpdateAPIView):
-	"""
-	Definición de api de creación de tiquetes por medio de web propia
-	"""
-	lookup_field = "uuid"
-	queryset = Order.objects.all()
-	serializer_class = serializers.OrderSerializer
-	permission_classes = ()
+    """
+    Definition of the API for retrieve and update a Order object
+    """
+
+    lookup_field = "uuid"
+    queryset = Order.objects.all()
+    serializer_class = serializers.OrderSerializer
+    permission_classes = ()
+
 
 class OrderListViewAPI(generics.ListAPIView):
-	"""
-	Definición de api de creación de tiquetes por medio de web propia
-	"""
-	queryset = Order.objects.all()
-	serializer_class = serializers.OrderSerializer
-	permission_classes = (IsAuthenticated, )
+    """
+    Definition of the API for list a order object
+    """
+
+    queryset = Order.objects.all()
+    serializer_class = serializers.OrderSerializer
+    permission_classes = (IsAuthenticated,)

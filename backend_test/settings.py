@@ -10,10 +10,12 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
+
 import os
 
-from .envtools import getenv
 from celery.schedules import crontab
+
+from backend_test.envtools import getenv
 
 # import sentry_sdk
 # from sentry_sdk.integrations.django import DjangoIntegration
@@ -39,12 +41,12 @@ APPEND_SLASH = False
 # Application definition
 
 NO_DJANGO_APPS = [
-    'django_celery_beat',
+    "django_celery_beat",
     "backend_test.utils",
-    'backend_test.menu',
-    'backend_test.staff',
+    "backend_test.menu",
+    "backend_test.staff",
     "rest_framework",
-    'rest_framework.authtoken',
+    "rest_framework.authtoken",
 ]
 
 INSTALLED_APPS = [
@@ -75,14 +77,14 @@ ROOT_URLCONF = "backend_test.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": ['backend_test/templates'],
+        "DIRS": ["backend_test/templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
                 "django.template.context_processors.debug",
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
-                "django.contrib.messages.context_processors.messages"
+                "django.contrib.messages.context_processors.messages",
             ],
         },
     },
@@ -110,9 +112,7 @@ DATABASES = {
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://{}:6379/0".format(
-            getenv("REDIS_CACHE_HOSTNAME", default="redis")
-        ),
+        "LOCATION": "redis://{}:6379/0".format(getenv("REDIS_CACHE_HOSTNAME", default="redis")),
         "OPTIONS": {"CLIENT_CLASS": "django_redis.client.DefaultClient"},
     }
 }
@@ -164,16 +164,16 @@ REST_FRAMEWORK = {
 }
 
 if getenv("BROWSABLE_API_RENDERER", default=True, coalesce=bool):
-    REST_FRAMEWORK["DEFAULT_RENDERER_CLASSES"] = REST_FRAMEWORK[
-        "DEFAULT_RENDERER_CLASSES"
-    ] + ["rest_framework.renderers.BrowsableAPIRenderer"]
+    REST_FRAMEWORK["DEFAULT_RENDERER_CLASSES"] = REST_FRAMEWORK["DEFAULT_RENDERER_CLASSES"] + [
+        "rest_framework.renderers.BrowsableAPIRenderer"
+    ]
 
 
 # Users and authentication
-AUTH_USER_MODEL = 'staff.User'
+AUTH_USER_MODEL = "staff.User"
 
 # Slack integration
-SLACK_TOKEN = ""
+SLACK_TOKEN = "Change"
 
 # APP SPECIFIC SETTINGS
 
@@ -182,7 +182,7 @@ SLACK_TOKEN = ""
 
 CELERY_BROKER_URL = "redis://redis:6379"
 CELERY_RESULT_BACKEND = "redis://redis:6379"
-CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
+CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
 
 # CELERY_BEAT_SCHEDULE = {
 #     "sample_task": {

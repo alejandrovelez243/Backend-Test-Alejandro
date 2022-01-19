@@ -1,4 +1,5 @@
 from django.db import models
+
 # Create your models here.
 
 
@@ -8,7 +9,7 @@ class Menu(models.Model):
 
     def __str__(self):
         return self.show_text
-    
+
 
 class Product(models.Model):
     menu = models.ForeignKey(Menu, on_delete=models.CASCADE)
