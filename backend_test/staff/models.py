@@ -31,7 +31,9 @@ class Order(models.Model):
     uuid = models.UUIDField(default=uuid.uuid4, editable=True, unique=True)
     staff = models.ForeignKey(Staff, on_delete=models.CASCADE)
     menu = models.ForeignKey(Menu, on_delete=models.CASCADE, blank=True, null=True)
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, blank=True, null=True)
+    product = models.ForeignKey(
+        Product, on_delete=models.CASCADE, blank=True, null=True
+    )
     customizations = models.TextField(blank=True, null=True)
 
     def __str__(self):

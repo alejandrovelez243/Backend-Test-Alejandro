@@ -13,8 +13,6 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 
-from celery.schedules import crontab
-
 from backend_test.envtools import getenv
 
 # import sentry_sdk
@@ -112,7 +110,9 @@ DATABASES = {
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://{}:6379/0".format(getenv("REDIS_CACHE_HOSTNAME", default="redis")),
+        "LOCATION": "redis://{}:6379/0".format(
+            getenv("REDIS_CACHE_HOSTNAME", default="redis")
+        ),
         "OPTIONS": {"CLIENT_CLASS": "django_redis.client.DefaultClient"},
     }
 }
@@ -141,7 +141,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = "UTC"
+TIME_ZONE = "America/Bogota"
 
 USE_I18N = True
 
@@ -164,9 +164,9 @@ REST_FRAMEWORK = {
 }
 
 if getenv("BROWSABLE_API_RENDERER", default=True, coalesce=bool):
-    REST_FRAMEWORK["DEFAULT_RENDERER_CLASSES"] = REST_FRAMEWORK["DEFAULT_RENDERER_CLASSES"] + [
-        "rest_framework.renderers.BrowsableAPIRenderer"
-    ]
+    REST_FRAMEWORK["DEFAULT_RENDERER_CLASSES"] = REST_FRAMEWORK[
+        "DEFAULT_RENDERER_CLASSES"
+    ] + ["rest_framework.renderers.BrowsableAPIRenderer"]
 
 
 # Users and authentication
@@ -183,6 +183,7 @@ SLACK_TOKEN = "Change"
 CELERY_BROKER_URL = "redis://redis:6379"
 CELERY_RESULT_BACKEND = "redis://redis:6379"
 CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
+CELERY_TIMEZONE = "America/Bogota"
 
 # CELERY_BEAT_SCHEDULE = {
 #     "sample_task": {

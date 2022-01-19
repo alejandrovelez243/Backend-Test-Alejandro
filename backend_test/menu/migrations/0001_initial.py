@@ -17,7 +17,10 @@ class Migration(migrations.Migration):
                 (
                     "id",
                     models.AutoField(
-                        auto_created=True, primary_key=True, serialize=False, verbose_name="ID"
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
                     ),
                 ),
                 ("date", models.DateField()),
@@ -30,13 +33,18 @@ class Migration(migrations.Migration):
                 (
                     "id",
                     models.AutoField(
-                        auto_created=True, primary_key=True, serialize=False, verbose_name="ID"
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
                     ),
                 ),
                 ("description", models.TextField()),
                 (
                     "menu",
-                    models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to="menu.Menu"),
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE, to="menu.Menu"
+                    ),
                 ),
             ],
         ),

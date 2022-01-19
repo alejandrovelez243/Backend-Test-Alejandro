@@ -28,7 +28,10 @@ class Migration(migrations.Migration):
             model_name="order",
             name="menu",
             field=models.ForeignKey(
-                blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to="menu.Menu"
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="menu.Menu",
             ),
         ),
         migrations.AlterField(

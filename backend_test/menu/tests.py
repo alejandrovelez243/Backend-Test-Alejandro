@@ -145,12 +145,13 @@ class TasksTest(TestCase):
     def setUp(self):
         menu = Menu.objects.create(show_text="TEST", date=datetime.now().date())
         staff = Staff.objects.create(
-            full_name="Alejandro", email="alejandro-243@hotmail.com", slack_user="@alejandro-243"
+            full_name="Alejandro",
+            email="alejandro-243@hotmail.com",
+            slack_user="@alejandro-243",
         )
         Order.objects.create(menu=menu, staff=staff)
 
     @override_settings(CELERY_ALWAYS_EAGER=True)
     def test_send_slack_message(self):
         message = send_slack_message.delay()
-        print(message.get())
-        self.assertEqual(message.get(), True)
+        self.assertEqual(message.get(), 0)

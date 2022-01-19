@@ -1,17 +1,7 @@
-# Django
-from django.conf import settings
-from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
-from rest_framework import generics, mixins, viewsets
+from rest_framework import generics
+from rest_framework.permissions import IsAuthenticated
 
-# Rest framework
-from rest_framework.authentication import BasicAuthentication, SessionAuthentication
-from rest_framework.permissions import AllowAny, IsAuthenticated
-from rest_framework.views import APIView
-
-# Serializers
 from . import serializers
-
-# Models
 from .models import Menu, Product
 
 

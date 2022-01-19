@@ -2,7 +2,6 @@ from datetime import datetime
 
 from celery import shared_task
 from django.conf import settings
-from django.template import Context
 from django.template.loader import get_template
 
 import slack
@@ -23,4 +22,5 @@ def send_slack_message():
         html_content = template.render(context)
         slack.chat.post_message("@alejandro-243", html_content, username="Almuerzo")
         message_send += 1
+    print(message_send)
     return message_send

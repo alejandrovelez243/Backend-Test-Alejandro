@@ -27,7 +27,9 @@ class ProductSlugRelatedField(serializers.SlugRelatedField):
 class OrderSerializer(serializers.ModelSerializer):
     staff = serializers.SlugRelatedField(slug_field="full_name", read_only=True)
     menu = serializers.SlugRelatedField(slug_field="show_text", read_only=True)
-    product = ProductSlugRelatedField(slug_field="description", queryset=Product.objects.all())
+    product = ProductSlugRelatedField(
+        slug_field="description", queryset=Product.objects.all()
+    )
 
     class Meta:
         model = Order

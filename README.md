@@ -65,7 +65,8 @@ make up
 
 ### About testing your application
 
-Just run the next commands
+For the testing and coverage of the app I used the test suit that django give to us.
+
 ```
 dev test
 dev coverage
